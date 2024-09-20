@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.4...v0.2.5) (2024-09-20)
+
+
+### Bug Fixes
+
+* Remove detached head warnings ([04d27a0](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/04d27a08859ef53a4de625f9eb33d8e750a0aecb))
+
 ## [0.2.4](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.3...v0.2.4) (2024-09-20)
 
 
