@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.7](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.6...v0.2.7) (2024-09-20)
+
+
+### Features
+
+* Improve questions ([3db4acd](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/3db4acd355598926809c36df8e3e3eca1f7c1139))
+
 ## [0.2.6](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.5...v0.2.6) (2024-09-20)
 
 
