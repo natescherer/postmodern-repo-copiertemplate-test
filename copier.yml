@@ -33,7 +33,7 @@ author_name:
 
 developer_platform:
   type: str
-  help: "{% if not is_copier_update %}The platform where you are going to host your Git repo and CI/CD.{% else %}'developer_platform' This value should not be changed on update.{% endif %}"
+  help: The platform where you are going to host your Git repo and CI/CD. This value should not be changed on update.
   choices:
     - GitHub
     - Azure DevOps
@@ -63,18 +63,18 @@ github_token:
 
 github_username:
   type: str
-  help: "{% if not is_copier_update %}Your GitHub username. Repo will be created under this user unless an org is specified. Autodetect attempted from Git 'user.email'.{% else %}'github_username' This value should not be changed on update.{% endif %}"
+  help: Your GitHub username. Repo will be created under this user unless an org is specified. Autodetect attempted from Git 'user.email'.{% else %}'github_username' This value should not be changed on update.
   default: "{{ (('git config --global user.email' | shell()).split('+') | last).split('@') | first }}"
   when: "{{ developer_platform == 'GitHub' }}"
 
 github_org:
   type: str
-  help: "{% if not is_copier_update %}(OPTIONAL) If this repo {% if repo_actions == 'Create Repo' %}should be created under{% else %}is part of{% endif %} a GitHub organization, supply its name here.{% else %}'github_org' This value should not be changed on update.{% endif %}"
+  help: (OPTIONAL) If this repo {% if repo_actions == 'Create Repo' %}should be created under{% else %}is part of{% endif %} a GitHub organization, supply its name here. This value should not be changed on update.
   when: "{{ developer_platform == 'GitHub' }}"
 
 azdo_org:
   type: str
-  help: "{% if not is_copier_update %}The Azure DevOps organization to use for the new project.{% else %}'azdo_org' This value should not be changed on update.{% endif %}"
+  help: The Azure DevOps organization to use for the new project. This value should not be changed on update.
   when: "{{ developer_platform == 'Azure DevOps' }}"
   validator: "{% if azdo_org is not extant_azdo_org %}Azure DevOps Organization Does Not Exist{% endif %}"
 
@@ -88,12 +88,12 @@ azdo_token:
 
 azdo_project:
   type: str
-  help: "{% if not is_copier_update %}An Azure DevOps project in organization '{{ azdo_org }}'.{% else %}'azdo_project' This value should not be changed on update.{% endif %}"
+  help: An Azure DevOps project in organization '{{ azdo_org }}'. This value should not be changed on update.
   when: "{{ developer_platform == 'Azure DevOps' }}"
 
 repo_name:
   type: str
-  help: "{% if not is_copier_update %}The name of this project's Git repository. Will be {% if repo_actions == 'Create Repo' %}created{% else %}reused{% endif %} by this template.{% else %}'repo_name' This value should not be changed on update.{% endif %}"
+  help: The name of this project's Git repository. Will be {% if repo_actions == 'Create Repo' %}created{% else %}reused{% endif %} by this template. This value should not be changed on update.
   validator: |
     {% if not is_copier_update %}
       {% if repo_actions == 'Create Repo' -%}
@@ -121,7 +121,7 @@ repo_name:
 
 project_type:
   type: str
-  help: "{% if not is_copier_update %}If you are creating another Copier template that will inherit from this one, choose Template. Otherwise, choose Standard.{% else %}'project_type' This value should not be changed on update.{% endif %}"
+  help: If you are creating another Copier template that will inherit from this one, choose Template. Otherwise, choose Standard. This value should not be changed on update.
   choices:
     - Standard
     - Template
@@ -140,7 +140,7 @@ project_website:
 
 project_visibility:
   type: str
-  help: "{% if not is_copier_update %}Choose if you want this project to be Public or Private.{% else %}'project_visibility' This value should not be changed on update.{% endif %}"
+  help: Choose if you want this project to be Public or Private. This value should not be changed on update.
   choices:
     Public:
       value: Public
