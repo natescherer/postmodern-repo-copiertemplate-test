@@ -237,7 +237,7 @@ should_set_repo_settings:
 _tasks:
   - >-
     {%- if is_template -%}
-    invoke copy-template-files --conf-src-path '{{ _copier_conf.src_path }}' --conf-vcs-ref '{{ _copier_conf.vcs_ref }}' --answers-json '{{ _copier_answers | to_json }}'
+    invoke copy-template-files --answers-json '{{ _copier_answers | to_json }}'
     {%- endif -%}
   - >-
     {%- if should_create_repo and using_github -%}
