@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.6](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.5...v0.2.6) (2024-09-20)
+
+
+### Bug Fixes
+
+* Silence git clone ([b42a3d5](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/b42a3d5ed83bece1a4169c9af4d3e8a9aba8c66c))
+
 ## [0.2.5](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.4...v0.2.5) (2024-09-20)
 
 
