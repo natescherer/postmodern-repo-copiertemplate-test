@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.18](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.17...v0.2.18) (2024-09-20)
+
+
+### Features
+
+* Don't have all contributors run on actions PRs ([e0187f6](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/e0187f6a606d33aa6a634264f4523a2d16df15cb))
+
 ## [0.2.17](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.16...v0.2.17) (2024-09-20)
 
 
