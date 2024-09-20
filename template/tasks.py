@@ -3,30 +3,32 @@
 This file is to be executed with https://www.pyinvoke.org/ in Python 3.6+.
 """
 import json
-import shutil
 import os
+import shutil
+import tempfile
+import copier.vcs
 import githubkit
 import requests
 from invoke import task
 from rich import print
 
 @task
-def rename_template_files(c):
-    """Renames files in template that were renamed during build to block rendering."""
-    # This function can be removed once https://github.com/copier-org/copier/pull/1511 is implemented
-    print("[bold green]*** 'rename-template-files' task start ***[/bold green]")
-    if shutil.which("pwsh"):
-          # Wipe any conflicting target
-          c.run("pwsh -c 'Get-ChildItem -Path \"template\" -Force -Recurse -Directory | ForEach {if (($_.Name -like \"*[[]*\") -and ($_.FullName -notlike \"*{% if is_template %}template{% endif %}*\")) {$NewPath = (Join-Path (Split-Path -Path $_.FullName -Parent) ($_.Name).Replace(\"[\",\"{\")); if (Test-Path $NewPath) {Remove-Item $NewPath -Force -Recurse}}}'")
-          # Rename bracket folders
-          c.run("pwsh -c 'Get-ChildItem -Path \"template\" -Force -Recurse -Directory | ForEach {if (($_.Name -like \"*[[]*\") -and ($_.FullName -notlike \"*{% if is_template %}template{% endif %}*\")) {$NewPath = (Join-Path (Split-Path -Path $_.FullName -Parent) $_.Name.Replace(\"[\",\"{\")); Move-Item -LiteralPath $_.FullName -Destination $NewPath -Force}}'")
-          # Rename bracket files
-          c.run("pwsh -c 'Get-ChildItem -Path \"template\" -Force -Recurse | ForEach {if (($_.Name -like \"*[[]*\") -and ($_.FullName -notlike \"*{% if is_template %}template{% endif %}*\")) {$NewPath = (Join-Path (Split-Path -Path $_.FullName -Parent) $_.Name.Replace(\"[\",\"{\")); Move-Item -LiteralPath $_.FullName -Destination $NewPath -Force}}'")
-          # Rename raw files
-          c.run("pwsh -c 'Get-ChildItem -Path \"template\" -Force -Recurse | ForEach {if (($_.Name -like \"*.jinja.raw\") -and ($_.FullName -notlike \"*{% if is_template %}template{% endif %}*\")) {$NewPath = (Join-Path (Split-Path -Path $_.FullName -Parent) $_.Name.Replace(\".jinja.raw\",\".jinja\")); Move-Item -LiteralPath $_.FullName -Destination $NewPath -Force}}'")
-    else:
-        raise FileNotFoundError("PowerShell needs installed for the time being. Sorry.")
-    print("[bold green]*** 'rename-template-files' task end ***[/bold green]")
+def copy_template_files(c, conf_src_path, conf_vcs_ref, answers_json):
+    """Pulls down an additional copy of template files."""
+    print("[bold green]*** 'copy-template-files' task start ***[/bold green]")
+    answers = json.loads(answers_json)
+    source = conf_src_path or answers["_src_path"]
+    ref = conf_vcs_ref or answers["_commit"]
+    source_url = copier.vcs.get_repo(source)
+    print(f"source_url is '{source_url}'")
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        if ref != "HEAD":
+            c.run(f"cd {tmpdir}; git clone --depth 1 --branch {ref} {source_url} .")
+        else:
+            c.run(f"cd {tmpdir}; git clone --depth 1 {source_url} .")
+        shutil.copytree(f"{tmpdir}/template", "template", dirs_exist_ok=True)
+    print("[bold green]*** 'copy-template-files' task end ***[/bold green]")
 
 @task
 def create_repo_github(c, answers_json):

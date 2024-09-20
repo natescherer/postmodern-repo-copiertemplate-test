@@ -237,10 +237,9 @@ should_set_repo_settings:
 ## Tasks
 
 _tasks:
-  # The following task can be removed once https://github.com/copier-org/copier/pull/1511 is implemented
   - >-
     {%- if is_template -%}
-    invoke rename-template-files
+    invoke copy-template-files --conf-src-path '{{ _copier_conf.src_path }}' --conf-vcs-ref '{{ _copier_conf.vcs_ref }}' --answers-json '{{ _copier_answers | to_json }}'
     {%- endif -%}
   - >-
     {%- if should_create_repo and using_github -%}
