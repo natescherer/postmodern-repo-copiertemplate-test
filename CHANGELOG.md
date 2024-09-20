@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.2...v0.2.3) (2024-09-20)
+
+
+### Bug Fixes
+
+* Remove conf from task ([59c8b7d](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/59c8b7d106053029050a2f74b464860f1487d6a5))
+
 ## [0.2.2](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.1...v0.2.2) (2024-09-20)
 
 
