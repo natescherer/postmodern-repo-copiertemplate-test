@@ -20,13 +20,12 @@ def copy_template_files(c, answers_json):
     source = answers["_src_path"]
     ref = answers["_commit"]
     source_url = copier.vcs.get_repo(source)
-    print(f"source_url is '{source_url}'")
 
     with tempfile.TemporaryDirectory() as tmpdir:
         if ref != "HEAD" and ref is not None:
-            c.run(f"cd {tmpdir}; git -c advice.detachedHead=false clone --depth 1 --branch {ref} {source_url} .")
+            c.run(f"cd {tmpdir}; git -c advice.detachedHead=false clone -q --depth 1 --branch {ref} {source_url} .")
         else:
-            c.run(f"cd {tmpdir}; git -c advice.detachedHead=false clone --depth 1 {source_url} .")
+            c.run(f"cd {tmpdir}; git -c advice.detachedHead=false clone -q --depth 1 {source_url} .")
         shutil.copytree(f"{tmpdir}/template", "template", dirs_exist_ok=True)
     print("[bold green]*** 'copy-template-files' task end ***[/bold green]")
 
