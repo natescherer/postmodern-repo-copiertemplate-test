@@ -24,9 +24,9 @@ def copy_template_files(c, answers_json):
 
     with tempfile.TemporaryDirectory() as tmpdir:
         if ref != "HEAD" and ref is not None:
-            c.run(f"cd {tmpdir}; git clone --depth 1 --branch {ref} {source_url} .")
+            c.run(f"cd {tmpdir}; git -c advice.detachedHead=false clone --depth 1 --branch {ref} {source_url} .")
         else:
-            c.run(f"cd {tmpdir}; git clone --depth 1 {source_url} .")
+            c.run(f"cd {tmpdir}; git -c advice.detachedHead=false clone --depth 1 {source_url} .")
         shutil.copytree(f"{tmpdir}/template", "template", dirs_exist_ok=True)
     print("[bold green]*** 'copy-template-files' task end ***[/bold green]")
 
