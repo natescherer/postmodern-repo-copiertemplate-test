@@ -13,26 +13,6 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      # The following two steps can be removed once https://github.com/copier-org/copier/pull/1511 is implemented
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - run: |
-          if (Test-Path "template/{% if is_template %}template{% endif %}") {
-            Remove-Item -Path "template/{% if is_template %}template{% endif %}" -Recurse -Force
-          }
-          Copy-Item -Path "template" -Destination "template_copy" -Recurse
-          Move-Item -Path "template_copy" -Destination "template"
-          Rename-Item -Path "template/template_copy" -NewName "{% if is_template %}template{% endif %}"
-          # Rename bracket folders
-          Get-ChildItem -Path "template/{% if is_template %}template{% endif %}" -Force -Recurse -Directory | ForEach {if ($_.Name -like "*{*") {$NewPath = (Join-Path (Split-Path -Path $_.FullName -Parent) $_.Name.Replace("{","[")); Move-Item -LiteralPath $_.FullName -Destination $NewPath -Force}}
-          # Rename bracket files
-          Get-ChildItem -Path "template/{% if is_template %}template{% endif %}" -Force -Recurse | ForEach {if ($_.Name -like "*{*") {$NewPath = (Join-Path (Split-Path -Path $_.FullName -Parent) $_.Name.Replace("{","[")); Move-Item -LiteralPath $_.FullName -Destination $NewPath -Force}}
-          # Rename raw files
-          Get-ChildItem -Path "template/{% if is_template %}template{% endif %}" -Force -Recurse | ForEach {if ($_.Name -like "*.jinja") {$NewPath = (Join-Path (Split-Path -Path $_.FullName -Parent) $_.Name.Replace(".jinja",".jinja.raw")); Move-Item -LiteralPath $_.FullName -Destination $NewPath -Force}}
-        shell: pwsh
-        name: Create Subtemplate Directory
       - uses: googleapis/release-please-action@v4
         with:
           config-file: release-please-config.json
