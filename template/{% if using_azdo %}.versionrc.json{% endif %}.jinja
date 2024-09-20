@@ -3,11 +3,9 @@
     "reverse": false,
     "commitsSort": false
   },
-{%- if using_azdo %}
   "parserOpts": {
     "headerPattern": "(?:\\(Merged PR \\d+: \\))?([a-zA-Z]+)(?:\\(([\\w$\\.\\-*\\s]*)\\))?\\!?:(.*)"
   },
-{%- endif %}
   "bumpFiles": [
     {
       "filename": "version-tempfile-for-ci-output.txt",
@@ -75,7 +73,7 @@
   ],
   "skip": {
     "bump": false,
-    "changelog": {% if using_kac %}true{% else %}false{% endif %},
+    "changelog": false,
     "commit": true,
     "tag": true
   },
