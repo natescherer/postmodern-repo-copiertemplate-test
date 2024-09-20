@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.1](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.0...v0.2.1) (2024-09-20)
+
+
+### Features
+
+* Add files to template ([9f1f1ab](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/9f1f1ab7e7d2a34bd8ceefde66b542e8a08cd692))
+* Create new child template methodology ([6a03cf6](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/6a03cf68994be76abdcbf05034c0d4f1b5c8cbb7))
+
+
+### Bug Fixes
+
+* Update Release Please workflows ([d7137e0](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/d7137e031af733bc82bca3bf376413b28549e341))
+
 ## [0.2.0](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.1.70...v0.2.0) (2024-09-20)
 
 
