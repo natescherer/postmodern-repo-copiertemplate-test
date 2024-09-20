@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.3...v0.2.4) (2024-09-20)
+
+
+### Features
+
+* Add/modify files for testing updating ([87c58c2](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/87c58c24992cc4e11b9b3da38809cf4edd85b4d7))
+
 ## [0.2.3](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.2...v0.2.3) (2024-09-20)
 
 
