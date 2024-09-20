@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.1...v0.2.2) (2024-09-20)
+
+
+### Bug Fixes
+
+* Fix git cloning logic in task ([3c482f0](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/3c482f04e2efd7cfd7dbd7bab67c507e70541eed))
+
 ## [0.2.1](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.0...v0.2.1) (2024-09-20)
 
 
