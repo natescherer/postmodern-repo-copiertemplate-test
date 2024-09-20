@@ -13,12 +13,12 @@ from invoke import task
 from rich import print
 
 @task
-def copy_template_files(c, conf_src_path, conf_vcs_ref, answers_json):
+def copy_template_files(c, answers_json):
     """Pulls down an additional copy of template files."""
     print("[bold green]*** 'copy-template-files' task start ***[/bold green]")
     answers = json.loads(answers_json)
-    source = conf_src_path or answers["_src_path"]
-    ref = conf_vcs_ref or answers["_commit"]
+    source = answers["_src_path"]
+    ref = answers["_commit"]
     source_url = copier.vcs.get_repo(source)
     print(f"source_url is '{source_url}'")
 
