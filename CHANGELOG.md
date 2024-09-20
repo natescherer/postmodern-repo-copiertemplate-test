@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.13](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.12...v0.2.13) (2024-09-20)
+
+
+### Bug Fixes
+
+* Actually fix context updater ([4a4fd6e](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/4a4fd6e30cea6d2d5ef854407625676cec8b1a26))
+
 ## [0.2.12](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.11...v0.2.12) (2024-09-20)
 
 
