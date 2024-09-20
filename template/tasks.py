@@ -23,7 +23,7 @@ def copy_template_files(c, conf_src_path, conf_vcs_ref, answers_json):
     print(f"source_url is '{source_url}'")
 
     with tempfile.TemporaryDirectory() as tmpdir:
-        if ref != "HEAD":
+        if ref != "HEAD" and ref is not None:
             c.run(f"cd {tmpdir}; git clone --depth 1 --branch {ref} {source_url} .")
         else:
             c.run(f"cd {tmpdir}; git clone --depth 1 {source_url} .")
