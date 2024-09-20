@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.17](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.16...v0.2.17) (2024-09-20)
+
+
+### Features
+
+* Remove required status checks for PRs ([2b547f4](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/2b547f497fe7545eb9be58c3f242e73a2308d779))
+
+
+### Bug Fixes
+
+* Fix readme template for templates ([28946b2](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/28946b2ee2751884ac833179984c40d8e5c5d39d))
+
 ## [0.2.16](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.15...v0.2.16) (2024-09-20)
 
 
