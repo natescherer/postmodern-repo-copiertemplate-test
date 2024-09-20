@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.16](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.15...v0.2.16) (2024-09-20)
+
+
+### Bug Fixes
+
+* Fix context around template actions ([e8da3ad](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/e8da3ad6ee9f8cdbaea00c18d8bc8809528c8300))
+
 ## [0.2.15](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.14...v0.2.15) (2024-09-20)
 
 
