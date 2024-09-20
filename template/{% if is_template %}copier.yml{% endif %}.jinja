@@ -43,8 +43,7 @@ developer_platform:
 # Restore validators once https://github.com/copier-org/copier/issues/1050 is resolved
 repo_actions:
   type: str
-  help: If you are making a new project and want to have this template create the repo, choose 'Create Repo'. If you are applying this template to an existing project and want to just set repository rules, choose 'Set Repo Rules'. If you want don't want the template to do any repo-related automations, choose 'None'.
-  when: "{{ not is_copier_update }}"
+  help: If you are making a new project and want to have this template create the repo, choose 'Create Repo'. If you are applying this template to an existing project and want to just set repository rules, choose 'Set Repo Rules'. If this is an update run, or you want don't want the template to do any repo-related automations, choose 'None'.
   choices:
     Create Repo:
       value: Create Repo
