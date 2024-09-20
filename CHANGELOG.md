@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.19](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.18...v0.2.19) (2024-09-20)
+
+
+### Features
+
+* Overhaul workflows ([28d50a0](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/28d50a069a98662ba0a77a54a5f1661061026516))
+
 ## [0.2.18](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.17...v0.2.18) (2024-09-20)
 
 
