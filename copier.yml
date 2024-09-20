@@ -33,7 +33,7 @@ author_name:
 
 developer_platform:
   type: str
-  help: The platform where you are going to host your Git repo and CI/CD.
+  help: {% if not is_copier_update %}The platform where you are going to host your Git repo and CI/CD.{% else %}This value should not be changed on update.{% endif %}
   choices:
     - GitHub
     - Azure DevOps
@@ -59,23 +59,23 @@ github_token:
   default: ""
   help: |
     A GitHub Personal Access Token which will be used to {% if repo_actions == 'Create Repo' %}initialize your new repository and apply rules.{% else %}apply rules to your existing repo.{% endif %} Value is not saved.
-  when: "{{ developer_platform == 'GitHub' and repo_actions != 'None' }}"
+  when: "{{ developer_platform == 'GitHub' and repo_actions != 'None' and not is_copier_update }}"
   validator: "{% if github_token is not valid_gh_token and (developer_platform == 'GitHub' and repo_actions != 'None') %}GitHub Token Invalid{% endif %}"
 
 github_username:
   type: str
-  help: Your GitHub username. Repo will be created under this user unless an org is specified. Autodetect attempted from Git 'user.email'.
+  help: {% if not is_copier_update %}Your GitHub username. Repo will be created under this user unless an org is specified. Autodetect attempted from Git 'user.email'.{% else %}This value should not be changed on update.{% endif %}
   default: "{{ (('git config --global user.email' | shell()).split('+') | last).split('@') | first }}"
   when: "{{ developer_platform == 'GitHub' }}"
 
 github_org:
   type: str
-  help: (OPTIONAL) If this repo {% if repo_actions == 'Create Repo' %} should be created under{% else %}is part of{% endif %} a GitHub organization, supply its name here.
+  help: {% if not is_copier_update %}(OPTIONAL) If this repo {% if repo_actions == 'Create Repo' %}should be created under{% else %}is part of{% endif %} a GitHub organization, supply its name here.{% else %} This value should not be changed on update.{% endif %}
   when: "{{ developer_platform == 'GitHub' }}"
 
 azdo_org:
   type: str
-  help: The Azure DevOps organization to use for the new project.
+  help: {% if not is_copier_update %}The Azure DevOps organization to use for the new project.{% else %} This value should not be changed on update.{% endif %}
   when: "{{ developer_platform == 'Azure DevOps' }}"
   validator: "{% if azdo_org is not extant_azdo_org %}Azure DevOps Organization Does Not Exist{% endif %}"
 
@@ -85,44 +85,45 @@ azdo_token:
   default: ""
   help: |
     An Azure DevOps Personal Access Token which will be used to {% if repo_actions == 'Create Repo' %}initialize your new repository and apply rules.{% else %}apply rules to your existing repo.{% endif %} Value is not saved.
-  when: "{{ developer_platform == 'Azure DevOps' and repo_actions != 'None' }}"
+  when: "{{ developer_platform == 'Azure DevOps' and repo_actions != 'None' and not is_copier_update }}"
   validator: "{% if azdo_token is not valid_azdo_token_for_org(azdo_org) and (developer_platform == 'Azure DevOps' and repo_actions != 'None') %}Azure DevOps Token Invalid{% endif %}"
 
 azdo_project:
   type: str
-  help: An Azure DevOps project in organization '{{ azdo_org }}'.
+  help: {% if not is_copier_update %}An Azure DevOps project in organization '{{ azdo_org }}'.{% else %}This value should not be changed on update.{% endif %}
   when: "{{ developer_platform == 'Azure DevOps' }}"
 
 repo_name:
   type: str
-  help: |
-    The name of this project's Git repository. Will be {% if repo_actions == 'Create Repo' %}created{% else %}reused{% endif %} by this template.
+  help: {% if not is_copier_update %}The name of this project's Git repository. Will be {% if repo_actions == 'Create Repo' %}created{% else %}reused{% endif %} by this template.{% else %}This value should not be changed on update.{% endif %}
   validator: |
-    {% if repo_actions == 'Create Repo' -%}
-      {%- if developer_platform == 'GitHub' -%}
-        {%- if repo_name is not available_gh_repo_name_for_owner(github_username) -%}
-          GitHub Repo {{ github_username }}/{{ repo_name }} already exists
+    {% if not is_copier_update %}
+      {% if repo_actions == 'Create Repo' -%}
+        {%- if developer_platform == 'GitHub' -%}
+          {%- if repo_name is not available_gh_repo_name_for_owner(github_username) -%}
+            GitHub Repo {{ github_username }}/{{ repo_name }} already exists
+          {%- endif -%}
+        {%- elif developer_platform == 'Azure DevOps' -%}
+          {%- if repo_name is not available_azdo_repo_name_for_token_and_org_and_project(azdo_token, azdo_org, azdo_project) -%}
+            Azure Devops Repo {{ azdo_org }}/{{ azdo_project }}/{{ repo_name }} already exists
+          {%- endif -%}
         {%- endif -%}
-      {%- elif developer_platform == 'Azure DevOps' -%}
-        {%- if repo_name is not available_azdo_repo_name_for_token_and_org_and_project(azdo_token, azdo_org, azdo_project) -%}
-          Azure Devops Repo {{ azdo_org }}/{{ azdo_project }}/{{ repo_name }} already exists
+      {%- else -%}
+        {%- if developer_platform == 'GitHub' -%}
+          {%- if repo_name is available_gh_repo_name_for_owner(github_username) -%}
+            GitHub Repo {{ github_username }}/{{ repo_name }} does not exist
+          {%- endif -%}
+        {%- elif developer_platform == 'Azure DevOps' -%}
+          {%- if repo_name is available_azdo_repo_name_for_token_and_org_and_project(azdo_token, azdo_org, azdo_project) -%}
+            Azure Devops Repo {{ azdo_org }}/{{ azdo_project }}/{{ repo_name }} does not exist
+          {%- endif -%}
         {%- endif -%}
       {%- endif -%}
-    {%- else -%}
-      {%- if developer_platform == 'GitHub' -%}
-        {%- if repo_name is available_gh_repo_name_for_owner(github_username) -%}
-          GitHub Repo {{ github_username }}/{{ repo_name }} does not exist
-        {%- endif -%}
-      {%- elif developer_platform == 'Azure DevOps' -%}
-        {%- if repo_name is available_azdo_repo_name_for_token_and_org_and_project(azdo_token, azdo_org, azdo_project) -%}
-          Azure Devops Repo {{ azdo_org }}/{{ azdo_project }}/{{ repo_name }} does not exist
-        {%- endif -%}
-      {%- endif -%}
-    {%- endif %} #}
+    {%- endif %}
 
 project_type:
   type: str
-  help: If you are creating another Copier template that will inherit from this one, choose Template. Otherwise, choose Standard.
+  help: {% if not is_copier_update %}If you are creating another Copier template that will inherit from this one, choose Template. Otherwise, choose Standard.{% else %}This value should not be changed on update.{% endif %}
   choices:
     - Standard
     - Template
@@ -141,7 +142,7 @@ project_website:
 
 project_visibility:
   type: str
-  help: Choose if you want this project to be Public or Private.
+  help: {% if not is_copier_update %}Choose if you want this project to be Public or Private.{% else %}This value should not be changed on update.{% endif %}
   choices:
     Public:
       value: Public
@@ -156,16 +157,6 @@ license:
     - MIT
     - Provide Own
   when: "{{ project_visibility == 'Public' }}"
-
-changelog_type:
-  type: str
-  help: Choose the type of changelog you want this project to use.
-  choices:
-    Keep a Changelog:
-      value: Keep a Changelog
-      validator: "{% if developer_platform == 'Azure DevOps' %}Not Supported on Azure DevOps{% endif %}"
-    Conventional Changelog:
-      value: Conventional Changelog
 
 lifecycle:
   type: str
@@ -192,16 +183,6 @@ using_azdo:
 using_mit:
   type: bool
   default: "{% if license == 'MIT' %}true{% endif %}"
-  when: false
-
-using_kac:
-  type: bool
-  default: "{% if changelog_type == 'Keep a Changelog' %}true{% endif %}"
-  when: false
-
-using_cc:
-  type: bool
-  default: "{% if changelog_type == 'Conventional Changelog' %}true{% endif %}"
   when: false
 
 is_public:
