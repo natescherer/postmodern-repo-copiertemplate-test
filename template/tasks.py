@@ -70,14 +70,14 @@ def create_repo_azdo(c, answers_json):
     repo_data = {
         "name": answers["repo_name"]
     }
-    print("[cyan]Creating repo in Azure DevOps...[/cyan]")
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json"
     }
     encoded_project = answers["azdo_project"].replace(" ","%20")
     print("[cyan]Creating repo in Azure DevOps...[/cyan]")
-    requests.post(f"https://dev.azure.com/{answers['azdo_org']}/{encoded_project}/_apis/pipelines?api-version=7.1-preview.1", data=json.dumps(repo_data), auth=('', token), headers=headers)
+    response = requests.post(f"https://dev.azure.com/{answers['azdo_org']}/{encoded_project}/_apis/git/repositories?api-version=7.2-preview.1", data=json.dumps(repo_data), auth=('', token), headers=headers)
+    response.raise_for_status()
     print("[bold green]*** 'create-repo-azdo' task end ***[/bold green]")
 
 @task
@@ -234,7 +234,8 @@ def create_pipelines_azdo(c, answers_json):
     }
     encoded_project = answers["azdo_project"].replace(" ","%20")
     print("[cyan]Creating pipeline in Azure DevOps...[/cyan]")
-    requests.post(f"https://dev.azure.com/{answers['azdo_org']}/{encoded_project}/_apis/build/definitions?api-version=7.1-preview.7", data=json.dumps(pipeline_data), auth=('', token), headers=headers)
+    response = requests.post(f"https://dev.azure.com/{answers['azdo_org']}/{encoded_project}/_apis/build/definitions?api-version=7.1-preview.7", data=json.dumps(pipeline_data), auth=('', token), headers=headers)
+    response.raise_for_status()
     print("[bold green]*** 'create-pipelines-azdo' task end ***[/bold green]")
 
 @task
