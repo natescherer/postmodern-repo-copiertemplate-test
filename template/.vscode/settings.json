@@ -10,7 +10,8 @@
         "copier.yml": "jinja-yaml",
         "**.md[{]% endif %[}]": "markdown",
         "**.y*ml[{]% endif %[}]": "yaml",
-        "**.py[{]% endif %[}]": "python"
+        "**.py[{]% endif %[}]": "python",
+        "**.json[{]% endif %[}]": "json"
   }
 
 }
