@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.25](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.24...v0.2.25) (2024-09-21)
+
+
+### Bug Fixes
+
+* Fix azdo repo creation ([e668a9d](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/e668a9dc6b5cc5919faf76129f52d3bcdb545df7))
+
 ## [0.2.24](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.23...v0.2.24) (2024-09-21)
 
 
