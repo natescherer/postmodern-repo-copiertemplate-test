@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.21](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.20...v0.2.21) (2024-09-21)
+
+
+### Bug Fixes
+
+* Remove bad else in subtemplate copier.yml ([b5ced91](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/b5ced9135e8f14e59b10afca69ef65a5269d7aa7))
+
 ## [0.2.20](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.19...v0.2.20) (2024-09-21)
 
 
