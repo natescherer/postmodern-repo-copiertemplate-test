@@ -17,10 +17,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - name: Install Copier & Inject Dependencies
-        run: |
-          pipx install copier
-          pipx inject copier -r .devcontainer/library/requirements.txt
+      - name: Install Copier & Dependencies
+        run: pip install -r .devcontainer/library/requirements.txt
       - name: Run Copier Update
         run: copier update --skip-answered --trust
       - name: Create Pull Request
