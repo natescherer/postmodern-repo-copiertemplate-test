@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.27](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.26...v0.2.27) (2024-09-21)
+
+
+### Features
+
+* Exclude release-please files for azdo ([7f6aac0](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/7f6aac0b54ea376dc080d0cbcaef7733bdd9ef11))
+
 ## [0.2.26](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.25...v0.2.26) (2024-09-21)
 
 
