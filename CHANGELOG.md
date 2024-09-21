@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.26](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.25...v0.2.26) (2024-09-21)
+
+
+### Bug Fixes
+
+* Fix azdo whens and validators ([71eed19](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/71eed19155a6d9f6d33d512f22bc8db49168ae66))
+
 ## [0.2.25](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.24...v0.2.25) (2024-09-21)
 
 
