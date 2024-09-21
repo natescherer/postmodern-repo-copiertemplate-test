@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.28](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.27...v0.2.28) (2024-09-21)
+
+
+### Bug Fixes
+
+* Disable repo_name validator ([4274b0c](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/4274b0c4a4e1a935ae4f54bb4ade198c8f5a5070))
+
 ## [0.2.27](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.26...v0.2.27) (2024-09-21)
 
 
