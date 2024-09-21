@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.22](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.21...v0.2.22) (2024-09-21)
+
+
+### Features
+
+* Improve copier workflow ([42dc572](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/42dc572bb98e7067341ff951191489006e77663a))
+
 ## [0.2.21](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.20...v0.2.21) (2024-09-21)
 
 
