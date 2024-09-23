@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.39](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.38...v0.2.39) (2024-09-23)
+
+
+### Bug Fixes
+
+* Fix BaseSplat defn ([f136d3a](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/f136d3a1f5b000c1d3028eda8e2bf2ba396e239c))
+
 ## [0.2.38](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.37...v0.2.38) (2024-09-23)
 
 
