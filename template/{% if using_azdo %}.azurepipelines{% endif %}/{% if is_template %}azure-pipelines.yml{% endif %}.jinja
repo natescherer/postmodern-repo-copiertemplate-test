@@ -30,7 +30,7 @@ stages:
               $VersionFile = ".version.txt"
 
               if (!(Test-Path -Path $VersionFile)) {
-                New-Item -ItemType File -Path $TempFilePath | Out-Null
+                New-Item -ItemType File -Path $VersionFile | Out-Null
                 npx --yes commit-and-tag-version --release-as $MinVersion
               } elseif ([System.Version](Get-Content -Path $VersionFile) -lt [System.Version]$MinVersion) {
                 npx --yes commit-and-tag-version --release-as $MinVersion 
