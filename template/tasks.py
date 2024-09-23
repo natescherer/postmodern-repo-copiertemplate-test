@@ -178,7 +178,7 @@ def initialize_repo_and_commit_files(c, answers_json):
     print("[bold green]*** 'initialize-repo-and-commit-files' task start ***[/bold green]")
     answers = json.loads(answers_json)
     owner = answers.get("github_org") or answers.get("github_username")
-    first_version = "0.1.0" if answers["is_prerelease"] else "1.0.0"
+    first_version = "0.1.0" if answers.get("is_prerelease") else "1.0.0"
 
     print("[cyan]Initializing git repo with 'main' branch...[/cyan]")
     c.run("git init -b main")
