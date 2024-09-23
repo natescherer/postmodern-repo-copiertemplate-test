@@ -178,13 +178,17 @@ def initialize_repo_and_commit_files(c, answers_json):
     print("[bold green]*** 'initialize-repo-and-commit-files' task start ***[/bold green]")
     answers = json.loads(answers_json)
     owner = answers.get("github_org") or answers.get("github_username")
+    first_version = "0.1.0" if answers["is_prerelease"] else "1.0.0"
 
     print("[cyan]Initializing git repo with 'main' branch...[/cyan]")
     c.run("git init -b main")
     print("[cyan]Adding files to commit...[/cyan]")
     c.run("git add --all -- ':!tasks.py' ':!token.json' ':!template_copy.tar.gz'")
     print("[cyan]Committing...[/cyan]")
-    c.run("git commit -m 'feat: initialize project'")
+    commit_message = ("git commit -m 'feat: initialize project'")
+    if answers["developer_platform"] == "GitHub":
+        commit_message += f" -m 'Release-As: {first_version}'"
+    c.run(commit_message)
     if answers["developer_platform"] == "GitHub":
         remote_url = f"https://github.com/{owner}/{answers['repo_name']}.git"
     elif answers["developer_platform"] == "Azure DevOps":
