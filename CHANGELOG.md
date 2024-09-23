@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.41](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.40...v0.2.41) (2024-09-23)
+
+
+### Bug Fixes
+
+* Fix branch name on pr ([0a0dc8e](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/0a0dc8e81033f4e99a0cb8344d48db1b9fb99b63))
+
 ## [0.2.40](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.39...v0.2.40) (2024-09-23)
 
 
