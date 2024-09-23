@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.30](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.29...v0.2.30) (2024-09-23)
+
+
+### Bug Fixes
+
+* Fix quoting in azdo pipeline ([b4a97b5](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/b4a97b5cc8d5350cca8e31791c0d9e2e8e3b6da8))
+
 ## [0.2.29](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.28...v0.2.29) (2024-09-23)
 
 
