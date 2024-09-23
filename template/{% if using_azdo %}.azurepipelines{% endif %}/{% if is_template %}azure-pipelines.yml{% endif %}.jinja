@@ -26,16 +26,20 @@ stages:
               git config user.email "azuredevops@microsoft.com"
               git config user.name "Azure DevOps"
 
-              $TempFilePath = "version-tempfile-for-ci-output.txt"
-              New-Item -ItemType File -Path $TempFilePath | Out-Null
+              $MinVersion = "{% if is_prerelease %}0.1.0{% else %}1.0.0{% endif %}"
 
-              npx --yes commit-and-tag-version
+              if (!(Test-Path -Path ".version.txt")) {
+                npx --yes commit-and-tag-version --release-as $MinVersion
+              } elseif ([System.Version](Get-Content -Path ".version.txt") -lt [System.Version]$MinVersion) {
+                npx --yes commit-and-tag-version --release-as $MinVersion 
+              } else {
+                npx --yes commit-and-tag-version
+              }
 
-              $ReleaseVersion = Get-Content -Path $TempFilePath
+              $ReleaseVersion = Get-Content -Path ".version.txt"
               Write-Host "##vso[task.setvariable variable=RELEASE_VERSION;]$ReleaseVersion"
-              Remove-Item -Path $TempFilePath
 
-              git push --set-upstream origin release/$ReleaseVersion
+              git push --set-upstream origin release-v$ReleaseVersion
               git push origin --tags
             failOnStderr: false # Git writes to stderr normally
             displayName: Run 'commit-and-tag-version'
