@@ -31,10 +31,11 @@ stages:
 
               npx --yes commit-and-tag-version
 
-              Write-Host "##vso[task.setvariable variable=newversion;]$(Get-Content -Path $TempFilePath)"
+              $ReleaseVersion = Get-Content -Path $TempFilePath
+              Write-Host "##vso[task.setvariable variable=RELEASE_VERSION;]$ReleaseVersion"
               Remove-Item -Path $TempFilePath
 
-              git push --set-upstream origin release/$(newversion)
+              git push --set-upstream origin release/$ReleaseVersion
               git push origin --tags
             failOnStderr: false # Git writes to stderr normally
             displayName: Run 'commit-and-tag-version'
@@ -57,10 +58,10 @@ stages:
                 Uri = "$BaseUri/git/repositories/$(Build.Repository.Name)/pullrequests?api-version=7.0"
                 Method = "POST"
                 Body = ConvertTo-Json @{
-                  sourceRefName = "refs/heads/release/$(newversion)"
+                  sourceRefName = "refs/heads/release/$(RELEASE_VERSION)"
                   targetRefName = "$(Build.SourceBranch)"
-                  title = "chore: release v$(newversion)"
-                  description = "Release v$(newversion)"
+                  title = "chore: release v$(RELEASE_VERSION)"
+                  description = "Release v$(RELEASE_VERSION)"
                 }
               }
               $CreateResponse = Invoke-RestMethod @CreateSplat
@@ -93,7 +94,7 @@ stages:
                     bypassPolicy = $true
                     bypassReason = "Release"
                     deleteSourceBranch = $true
-                    mergeCommitMessage = "chore: release v$(newversion) [skip ci]"
+                    mergeCommitMessage = "chore: release v$(VERSION) [skip ci]"
                     mergeStrategy = "noFastForward"
                   }
                 }
