@@ -51,6 +51,7 @@ stages:
                 ContentType = "application/json"
                 Headers = @{
                   Authorization = "Basic $([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("user:$env:SYSTEM_ACCESSTOKEN")))"
+                }
               }
 
               $IDSplat = $BaseSplat + @{
