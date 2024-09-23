@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.40](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.39...v0.2.40) (2024-09-23)
+
+
+### Bug Fixes
+
+* Fix uris ([1b9b8e5](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/1b9b8e5856b6f7c97c4664aed4b5d40c17cf116b))
+
 ## [0.2.39](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.38...v0.2.39) (2024-09-23)
 
 
