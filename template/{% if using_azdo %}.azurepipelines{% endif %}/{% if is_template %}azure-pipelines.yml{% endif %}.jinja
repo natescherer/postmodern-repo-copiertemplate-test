@@ -27,16 +27,18 @@ stages:
               git config user.name "Azure DevOps"
 
               $MinVersion = "{% if is_prerelease %}0.1.0{% else %}1.0.0{% endif %}"
+              $VersionFile = ".version.txt"
 
-              if (!(Test-Path -Path ".version.txt")) {
+              if (!(Test-Path -Path $VersionFile)) {
+                New-Item -ItemType File -Path $TempFilePath | Out-Null
                 npx --yes commit-and-tag-version --release-as $MinVersion
-              } elseif ([System.Version](Get-Content -Path ".version.txt") -lt [System.Version]$MinVersion) {
+              } elseif ([System.Version](Get-Content -Path $VersionFile) -lt [System.Version]$MinVersion) {
                 npx --yes commit-and-tag-version --release-as $MinVersion 
               } else {
                 npx --yes commit-and-tag-version
               }
 
-              $ReleaseVersion = Get-Content -Path ".version.txt"
+              $ReleaseVersion = Get-Content -Path $VersionFile
               Write-Host "##vso[task.setvariable variable=RELEASE_VERSION;]$ReleaseVersion"
 
               git push --set-upstream origin release-v$ReleaseVersion
