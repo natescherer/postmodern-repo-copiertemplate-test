@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.44](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.43...v0.2.44) (2024-09-23)
+
+
+### Bug Fixes
+
+* Fix lifecycle test for first gh version ([22b1fce](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/22b1fcea717099bab5f69d2a572c7d787a09e8a1))
+
 ## [0.2.43](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.42...v0.2.43) (2024-09-23)
 
 
