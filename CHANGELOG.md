@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.34](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.33...v0.2.34) (2024-09-23)
+
+
+### Bug Fixes
+
+* Fix initialize_repo_and_commit_files task ([f6ae21f](https://github.com/natescherer/postmodern-repo-copiertemplate-test/commit/f6ae21f01ca566a1de0c2c1e49c25a4e5c6cccb1))
+
 ## [0.2.33](https://github.com/natescherer/postmodern-repo-copiertemplate-test/compare/v0.2.32...v0.2.33) (2024-09-23)
 
 
